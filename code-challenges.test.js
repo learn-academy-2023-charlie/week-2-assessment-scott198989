@@ -26,16 +26,62 @@ const numbersArray2 = [24, 27, 30, 33, 36]
 // --------------------1) Create a function that takes a object as an argument and decides if the number inside it is evenly divisible by three or not.
 
 // Pseudo code:
+// Input: Given objects with numbers 
+// Output : the number inside the arguement is evenly divisible by 3 or not
+// Create a test with expect statements for each of the variables provided.
+// // Process : Create a function called evenThree that will call an object as an arguement, add the string `is divisible by`, use modulo operand for division and set 3 strictly equal to a remainder of 0.
+// // Creat a test that will producted good failure in jest
 
-// a) Create a test with expect statements for each of the variables provided.
+// const object1 = { number: 15 }
+// // Expected output: "15 is divisible by three"
+// const object2 = { number: 0 }
+// // Expected output: "0 is divisible by three"
+// const object3 = { number: -7 }
+// // Expected output: "-7 is not divisible by three"
 
-const object1 = { number: 15 }
-// Expected output: "15 is divisible by three"
-const object2 = { number: 0 }
-// Expected output: "0 is divisible by three"
-const object3 = { number: -7 }
-// Expected output: "-7 is not divisible by three"
+// Create a test in Jest seeing the test have good failure because the function is undefined
+// Output :  FAIL  ./code-challenges.test.js
+//   evenThree
+//   ✕ if the number inside the object is evenly divisible by three (1 ms)
 
+// ● evenThree › if the number inside the object is evenly divisible by three
+
+//   ReferenceError: evenThree is not defined
+describe(`evenThree`,  () => {
+    it(`should return a string indicating if the number is divisible by three or not`, () => {
+      expect(evenThree(object1)).toEqual("15 is divisible by three");
+      expect(evenThree(object2)).toEqual("0 is divisible by three");
+      expect(evenThree(object3)).toEqual("-7 is not divisible by three");
+    })
+  })
+  
+class Divide {
+    constructor(number) {
+      this.number = number;
+    }
+  
+    answer() {
+      return this.number % 3 === 0;
+    }
+  }
+  
+  const object1 = new Divide(15);
+  const object2 = new Divide(0);
+  const object3 = new Divide(-7);
+  
+  const evenThree = (obj) => {
+    if (obj.answer()) {
+      return `${obj.number} is divisible by three`;
+    } else {
+      return `${obj.number} is not divisible by three`;
+    }
+  };
+  
+// Make the test pass by completing the function
+//  PASS  ./code-challenges.test.js
+//   evenThree
+
+  
 // b) Create the function that makes the test pass.
 
 // --------------------2) Create a function that takes in an array of words and returns an array with all the words capitalized.
@@ -57,6 +103,11 @@ const randomNouns2 = ["temperature", "database", "chopsticks", "mango"]
 
 // a) Create a test with expect statements for each of the variables provided.
 
+// FAIL  ./code-challenges.test.js
+// evenThree
+//   ✓ should return a string indicating if the number is divisible by three or not (1 ms)
+// indexVowels
+
 const vowelTester1 = "learn"
 // Expected output: 1
 const vowelTester2 = "academy"
@@ -65,3 +116,27 @@ const vowelTester3 = "challenges"
 // Expected output: 2
 
 // b) Create the function that makes the test pass.
+describe("indexVowels" , () => {
+    it("takes in a string and logs the index of the first vowel" , () => {
+        const vowelTester1 = "learn"
+        const vowelTester2 = "academy"
+        const vowelTester3 = "challenges"
+        expect(indexVowels(vowelTester1)).toEqual(1);
+        expect(indexVowels(vowelTester2)).toEqual(0);
+        expect(indexVowels(vowelTester3)).toEqual(2)
+        })
+})
+
+const indexVowels = (str) => {
+    const vowels = ["a", "e", "i", "o", "u"];
+    for (let i = 0; i < str.length; i++) {
+      if (vowels.includes(str[i])) {
+        return i;
+      }
+    }
+    return -1; // return -1 if no vowels found
+  }
+//   console.log(indexVowels("learn")); // output: 1
+//   console.log(indexVowels("academy")); // output: 0
+//   console.log(indexVowels("challenges")); // output: 2
+  
